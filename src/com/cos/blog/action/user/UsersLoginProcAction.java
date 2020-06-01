@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -43,6 +44,11 @@ public class UsersLoginProcAction implements Action {
 				
 				// 자기만의 jsession id에 principal이 존재하므로 여러 클라이언트 간에 구분 가능함
 				session.setAttribute("principal", user);	// principal : 인증주체
+				
+				if(request.getParameter("remember")!=null) { 
+					 Cookie cookie = new Cookie("remember", user.getUsername()); 
+					 response.addCookie(cookie);
+				}
 				
 				Script.href("로그인 성공", "/blog/board?cmd=home", response);
 			} else {
