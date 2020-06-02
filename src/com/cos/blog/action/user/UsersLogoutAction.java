@@ -16,7 +16,7 @@ public class UsersLogoutAction implements Action {
           HttpSession session = request.getSession(); 
           session.invalidate();
     	
-          //session.removeAttribute("pricipal");
+          //session.removeAttribute("principal");
           Script.href("로그아웃 성공", "index.jsp", response);
     }
 }

@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <%
 	Users principal = (Users) session.getAttribute("principal");
+
 %>
 
 <html lang="en">
