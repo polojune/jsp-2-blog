@@ -15,15 +15,15 @@ public class BoardHomeAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		    
-		Cookie[] cookies = request.getCookies();
-		if(cookies != null) {
-			 for (Cookie cookie : cookies) {
-				 System.out.println("boardhomeaction.java : " + cookie.getName() + " : " + cookie.getValue());
-				
-			}
-		}
-
-		
+//		Cookie[] cookies = request.getCookies();
+//		if(cookies != null) {
+//			 for (Cookie cookie : cookies) {
+//				 System.out.println("boardhomeaction.java : " + cookie.getName() + " : " + cookie.getValue());
+//				
+//			}
+//		}
+//
+//		
 		
 		
 		

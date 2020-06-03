@@ -14,6 +14,7 @@ import com.cos.blog.action.user.UsersJoinProcAction;
 import com.cos.blog.action.user.UsersLoginAction;
 import com.cos.blog.action.user.UsersLoginProcAction;
 import com.cos.blog.action.user.UsersLogoutAction;
+import com.cos.blog.action.user.UsersUsernameCheckAction;
 
 
 //Http://localhost:8000/blog/user
@@ -70,7 +71,10 @@ public class UsersController extends HttpServlet {
 	  } else if(cmd.equals("logout")) {
 	       //회원 로그아웃을 수행한 후 ->index.jsp로 이동
 	      return new UsersLogoutAction();
-      }
+      } else if(cmd.equals("usernameCheck")) {
+	       //회원 로그아웃을 수행한 후 ->index.jsp로 이동
+			return new UsersUsernameCheckAction();
+     }
 	   
 	   return null;
    }
