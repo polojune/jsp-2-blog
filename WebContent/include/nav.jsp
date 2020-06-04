@@ -2,9 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	Users principal = (Users) session.getAttribute("principal");
-%>
+
 
 <html lang="en">
 <head>
@@ -15,6 +13,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
 </head>
 <body>
 
@@ -27,7 +29,7 @@
 			<ul class="navbar-nav">
 
 				<c:choose>
-					<c:when test="${empty session.principal}">
+					<c:when test="${empty sessionScope.principal}">
 						<li class="nav-item"><a class="nav-link" href="/blog/user?cmd=login">로그인</a></li>
 						<li class="nav-item"><a class="nav-link" href="/blog/user?cmd=join">회원가입</a></li>
 
