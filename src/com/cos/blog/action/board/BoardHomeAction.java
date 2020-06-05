@@ -12,12 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.cos.blog.action.Action;
 import com.cos.blog.model.Board;
 import com.cos.blog.repository.BoardRepository;
+import com.cos.blog.util.HtmlParser;
 
 public class BoardHomeAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		    
+
 //		Cookie[] cookies = request.getCookies();
 //		if(cookies != null) {
 //			 for (Cookie cookie : cookies) {
@@ -29,16 +30,16 @@ public class BoardHomeAction implements Action {
 //		
 		// 1. DB 연결해서 Board 목록 다 불러와서
 		BoardRepository boardRepository = BoardRepository.getInstance();
-		List<Board> boards = boardRepository.findAll(); 
-		
-		for(Board board : boards) { 
-			  String preview = board.getContent(); 
-			  preview = preview.substring(0,10)+"...";
-			  board.setContent(preview);
+		List<Board> boards = boardRepository.findAll();
+
+		for (Board board : boards) {
+			String preview = HtmlParser.getContentPreview(board.getContent());
+			board.setContent(preview);
+
 		}
-		
+
 		// 2. request에 담고
-		request.setAttribute("boards", boards); 
+		request.setAttribute("boards", boards);
 		// 3. home.jsp로 이동
 		RequestDispatcher dis = request.getRequestDispatcher("home.jsp");
 		dis.forward(request, response);

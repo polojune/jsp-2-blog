@@ -49,6 +49,7 @@ public class UsersLoginProcAction implements Action {
 					  //key => Set-Cookie
 					  //value => remember =>kkk
 					 Cookie cookie = new Cookie("remember", user.getUsername()); 
+					 cookie.setHttpOnly(true);
 					 response.addCookie(cookie);
 					 
 					// response.setHeader("Set-Cookie", "remember=kkk");
