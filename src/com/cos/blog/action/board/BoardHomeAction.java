@@ -32,11 +32,11 @@ public class BoardHomeAction implements Action {
 		BoardRepository boardRepository = BoardRepository.getInstance();
 		List<Board> boards = boardRepository.findAll();
 
-		for (Board board : boards) {
-			String preview = HtmlParser.getContentPreview(board.getContent());
-			board.setContent(preview);
-
-		}
+//		for (Board board : boards) {
+//			String preview = HtmlParser.getContentPreview(board.getContent());
+//			board.setContent(preview);
+//
+//		}
 
 		// 2. request에 담고
 		request.setAttribute("boards", boards);
