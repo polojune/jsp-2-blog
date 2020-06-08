@@ -6,12 +6,13 @@
 
 <div class="container">
 
-	<form action="/blog/user?cmd=joinProc" method="post" class="was-validated" onsubmit="return validate()">
-
+	<form action="/blog/user?cmd=updateProc" method="post" class="was-validated" onsubmit="return validate()">
+        
+        <input type="hidden" name="id" value="${principal.id}"/>
 		<div class="form-group">
 			<label for="username">Username:</label>
 			<button type="button" class="btn btn-warning float-right" onclick="usernameCheck()">중복확인</button>
-			<input type="text" class="form-control" id="username" placeholder="Enter username" name="username" required readonly>
+			<input value="${principal.username}"  type="text" class="form-control" id="username" placeholder="Enter username" name="username" required readonly>
 			<div class="valid-feedback">Valid.</div>
 			<div class="invalid-feedback">Please fill out this field.</div>
 		</div>
@@ -23,7 +24,7 @@
 		</div>
 
 		<div class="form-group">
-			<label for="email">Email:</label> <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email" required>
+			<label for="email">Email:</label> <input value="${principal.email}" type="email" class="form-control" id="email" placeholder="Enter Email" name="email" required>
 			<div class="valid-feedback">Valid.</div>
 			<div class="invalid-feedback">Please fill out this field.</div>
 		</div>
@@ -32,7 +33,7 @@
 			<label for="address">Address:</label>
 			<button type="button" class="btn btn-warning float-right" onclick="goPopup();">주소검색</button>
 
-			<input type="text" class="form-control" id="address" placeholder="Enter Address" name="address" required readonly>
+			<input value="${principal.address}" type="text" class="form-control" id="address" placeholder="Enter Address" name="address" required readonly>
 			<div class="valid-feedback">Valid.</div>
 			<div class="invalid-feedback">Please fill out this field.</div>
 		</div>

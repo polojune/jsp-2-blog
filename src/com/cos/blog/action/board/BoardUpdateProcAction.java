@@ -15,7 +15,7 @@ import com.cos.blog.model.Users;
 import com.cos.blog.repository.BoardRepository;
 import com.cos.blog.util.Script;
 
-public class BoardWriteProcAction implements Action {
+public class BoardUpdateProcAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 0번 인증 확인
@@ -24,16 +24,18 @@ public class BoardWriteProcAction implements Action {
 			Script.getMessage("잘못된 접근입니다.", response);
 			return;
 		}
-		Users principal = (Users) session.getAttribute("principal");
+		
 		// 1번 request에 title값과 content값 null인지 공백인지 확인
 
-		if (request.getParameter("title").equals("") || request.getParameter("title") == null
+		if (request.getParameter("id").equals("") || request.getParameter("id") == null
+				|| request.getParameter("title").equals("") || request.getParameter("title") == null
 				|| request.getParameter("content").equals("") || request.getParameter("content") == null
 
 		) {
 			return;
 		}
 		// 2번 request에 title 값과 content 값을 받기
+		int id = Integer.parseInt(request.getParameter("id"));
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 
@@ -44,22 +46,21 @@ public class BoardWriteProcAction implements Action {
 //   	   board.setContent(content);
 
 		Board board = Board.builder()
-				.userId(principal.getId())
+				.id(id)
 				.title(title)
 				.content(content)
-				.readCount(0)
 				.build();
 
 		// 4번 BoardRepository연결해서 save(board)함수 호출
 		BoardRepository boardRepository = BoardRepository.getInstance();
 
-		int result = boardRepository.save(board);
+		int result = boardRepository.update(board);
 		// 5번 result ==1이면 성공로직(index.jsp로 이동)
 		if (result == 1) {
 
-			Script.href("글쓰기를 성공하였습니다.", "index.jsp", response);
+			Script.href("수정 성공", "/blog/board?cmd=detail&id="+id, response);
 		} else {
-			Script.back("글쓰기를 실패하였습니다.", response);
+			Script.back("수정을 실패하였습니다.", response);
 		}
 		// 6번 result != 1이면 실패로직(history.back())
 	}

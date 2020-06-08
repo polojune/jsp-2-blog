@@ -6,16 +6,16 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletResponse;
 
 public class Script {
-	
-	public static void getMessag(String msg, HttpServletResponse response) {
+    
+	public static void outJson(String msg, HttpServletResponse response) {
 
 		try {
-			
+
 			response.setCharacterEncoding("utf-8"); // web.xml에 설정하는 게 더 나은 부분
-			response.setContentType("text/html;charset=utf-8"); // 이건 web.xml 아님 JSON일 수도 있으므로
+			response.setContentType("application/json;charset=utf-8"); // 이건 web.xml 아님 JSON일 수도 있으므로
 			PrintWriter out = response.getWriter();
-		    
-			out.println("<h1>"+msg+"</h1>");
+
+			out.print(msg);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -23,11 +23,42 @@ public class Script {
 
 	}
 	
-	
+	public static void outText(String msg, HttpServletResponse response) {
+
+		try {
+
+			response.setCharacterEncoding("utf-8"); // web.xml에 설정하는 게 더 나은 부분
+			response.setContentType("text/plain;charset=utf-8"); // 이건 web.xml 아님 JSON일 수도 있으므로
+			PrintWriter out = response.getWriter();
+
+			out.print(msg);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public static void getMessage(String msg, HttpServletResponse response) {
+
+		try {
+
+			response.setCharacterEncoding("utf-8"); // web.xml에 설정하는 게 더 나은 부분
+			response.setContentType("text/html;charset=utf-8"); // 이건 web.xml 아님 JSON일 수도 있으므로
+			PrintWriter out = response.getWriter();
+
+			out.println("<h1>" + msg + "</h1>");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
 	public static void back(String msg, HttpServletResponse response) {
 
 		try {
-			
+
 			response.setCharacterEncoding("utf-8"); // web.xml에 설정하는 게 더 나은 부분
 			response.setContentType("text/html;charset=utf-8"); // 이건 web.xml 아님 JSON일 수도 있으므로
 			PrintWriter out = response.getWriter();
@@ -45,7 +76,7 @@ public class Script {
 	public static void href(String msg, String uri, HttpServletResponse response) {
 
 		try {
-		
+
 			response.setCharacterEncoding("utf-8"); // web.xml에 설정하는 게 더 나은 부분
 			response.setContentType("text/html;charset=utf-8"); // 이건 web.xml 아님 JSON일 수도 있으므로
 			PrintWriter out = response.getWriter();

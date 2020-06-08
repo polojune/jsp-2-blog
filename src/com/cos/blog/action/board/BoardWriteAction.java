@@ -18,7 +18,7 @@ public class BoardWriteAction implements Action {
 
 		HttpSession session = request.getSession();
 		if (session.getAttribute("principal") == null) {
-			Script.getMessag("잘못된 접근입니다.", response);
+			Script.getMessage("잘못된 접근입니다.", response);
 		} else {
 
 			RequestDispatcher dis = request.getRequestDispatcher("board/write.jsp");

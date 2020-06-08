@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.cos.blog.action.Action;
 import com.cos.blog.repository.UsersRepository;
+import com.cos.blog.util.Script;
 
 public class UsersUsernameCheckAction implements Action{
       @Override
@@ -18,7 +19,6 @@ public class UsersUsernameCheckAction implements Action{
     	 UsersRepository usersRepository = UsersRepository.getInstance();
     	 int result = usersRepository.findByUsername(username);
     	 
-    	 PrintWriter out = response.getWriter();
-    	 out.print(result);
+         Script.outText(result+"", response);
     }
 }
