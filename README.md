@@ -66,3 +66,9 @@ create SEQUENCE reply_seq
   increment by 1;
 
 ```
+## 페이징 쿼리
+```sql
+SELECT /*+ INDEX_DESC(BOARD SYS_C007969)*/id,
+userId, title, content, readCount, createDate
+FROM board
+OFFSET 0 ROWS FETCH NEXT 3 ROWS ONLY;

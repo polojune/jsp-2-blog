@@ -11,7 +11,7 @@
 		<div class="form-group">
 			<label for="username">Username:</label>
 			<button type="button" class="btn btn-warning float-right" onclick="usernameCheck()">중복확인</button>
-			<input type="text" class="form-control" id="username" placeholder="Enter username" name="username" required readonly>
+			<input type="text" class="form-control" id="username" placeholder="Enter username" name="username" required>
 			<div class="valid-feedback">Valid.</div>
 			<div class="invalid-feedback">Please fill out this field.</div>
 		</div>

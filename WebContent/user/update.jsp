@@ -10,8 +10,7 @@
         
         <input type="hidden" name="id" value="${principal.id}"/>
 		<div class="form-group">
-			<label for="username">Username:</label>
-			<button type="button" class="btn btn-warning float-right" onclick="usernameCheck()">중복확인</button>
+			<label for="username">Username:</label>			
 			<input value="${principal.username}"  type="text" class="form-control" id="username" placeholder="Enter username" name="username" required readonly>
 			<div class="valid-feedback">Valid.</div>
 			<div class="invalid-feedback">Please fill out this field.</div>
@@ -38,7 +37,7 @@
 			<div class="invalid-feedback">Please fill out this field.</div>
 		</div>
 
-		<button type="submit" class="btn btn-primary">Submit</button>
+		<button type="submit" class="btn btn-primary">회원정보수정</button>
 
 	</form>
 
@@ -48,6 +47,6 @@
 </div>
 
 
-<script src="/blog/js/join.js"></script>
+
 <%@ include file="../include/footer.jsp"%>
 
