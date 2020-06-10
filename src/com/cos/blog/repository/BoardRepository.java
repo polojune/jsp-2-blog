@@ -30,6 +30,73 @@ public class BoardRepository {
 	private PreparedStatement psmt = null;
 	private ResultSet rs = null;
     
+	
+	
+	public List<Board> findAll(int page, String keyword) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("SELECT /*+ INDEX_DESC(BOARD SYS_C007932)*/id,");
+		sb.append("userId, title, content, readCount, createDate ");
+		sb.append("FROM board ");
+		sb.append("WHERE title like ? OR content like ? ");
+		sb.append("OFFSET ? ROWS FETCH NEXT 3 ROWS ONLY");
+
+		final String SQL = sb.toString();
+		List<Board> boards = new ArrayList<>();
+
+		try {
+			conn = DBConn.getConnection();
+			psmt = conn.prepareStatement(SQL);
+			psmt.setString(1, "%"+keyword+"%");
+			psmt.setString(2, "%"+keyword+"%");
+			psmt.setInt(3, page*3);
+			// while 돌려서 rs -> java오브젝트에 집어넣기
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				Board board = new Board(
+						rs.getInt("id"),
+						rs.getInt("userId"),
+						rs.getString("title"),
+						rs.getString("content"),
+						rs.getInt("readCount"),
+						rs.getTimestamp("createDate")
+				);
+				boards.add(board);
+			}
+
+			return boards;
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(TAG+"findAll(page,keyword) : "+e.getMessage());
+		} finally {
+			DBConn.close(conn, psmt, rs);
+		}
+
+		return null;
+	}
+	
+	public int count(String keyword) {
+		final String SQL = "SELECT count(*) FROM board WHERE title LIKE ? OR content LIKE ?";
+
+		try {
+			conn = DBConn.getConnection();
+			psmt = conn.prepareStatement(SQL);
+			psmt.setString(1, "%"+keyword+"%");
+			psmt.setString(2, "%"+keyword+"%");
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt(1);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(TAG+"count(keyword) : "+e.getMessage());
+		} finally {
+			DBConn.close(conn, psmt, rs);
+		}
+
+		return -1;
+	}
+	
 	public int count() {
 		final String SQL = "SELECT count(*) FROM board";
 

@@ -20,7 +20,7 @@
 
 	<br /> <br />
 	<h6>
-		작성자 : <i>${dto.username}</i> <%--=username --%> 조회수 : <i>${dto.board.readCount}</i></h6>
+		작성자 : <i>${dto.username}</i> <%--=username --%> 조회수 : <i>${dto.board.readCount}</i>
 	</h6>
 	<br />
 	<h3>
