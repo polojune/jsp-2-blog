@@ -15,8 +15,10 @@
 		<form class="form-inline justify-content-end" action="/blog/board">
 			<input type="hidden" name="cmd" value="search" /> 
 			<input type="hidden" name="page" value="0" /> 
+			<div class="btn-group">
 			<input type="text" name="keyword" class="form-control mr-sm-2" type="text" placeholder="Search">
 			<button class="btn btn-primary" type="submit">검색</button>
+			</div>
 		</form>
 	</div>
 
