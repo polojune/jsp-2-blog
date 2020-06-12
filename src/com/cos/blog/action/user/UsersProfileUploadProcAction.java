@@ -23,7 +23,7 @@ public class UsersProfileUploadProcAction implements Action{
     	     int id;
     	     String fileName = null; 
     	     String contextPath = request.getServletContext().getContextPath();
-    	     String userProfile = null; // DB에 들어갈 변수 :위치
+    	     String userProfile = null; // DB에 들어갈 변수 :경로값(위치)
     	     System.out.println("realPath:" + realPath);
              System.out.println("contextPath : " + contextPath);
     	     

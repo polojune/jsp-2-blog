@@ -116,7 +116,7 @@ public class UsersRepository {
 	}
 
 	public int update(int id, String userProfile) {
-		final String SQL = "UPDATE users SET userProfile = ? WHERE id = ?";
+		final String SQL = "UPDATE users SET userProfile =?  WHERE id = ?";
 
 		try {
 			conn = DBConn.getConnection();

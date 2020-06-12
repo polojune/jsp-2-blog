@@ -19,15 +19,25 @@
        name=multi.getParameter("name"); 
        subject=multi.getParameter("subject"); 
        
+        // 아래 Enumeration<String> files가 갖고 있는 문자열 값은 결국 html 페이지의 file 파라메터 이름이다!
+       // 즉, <input type="file" name="xxx"> 안에 있던 xxx자리의 값인 fileName1과 fileName2임!
+       // 따라서 아래에서는 앞 페이지에서의 파라메터 이름을 바로 써서
+	   // multi.getFilesystemName("fileName1");
+	   // multi.getOriginalFileName("fileName1");
+		// 과 같이 써도 된다. 이게 순서 유지를 위해서는 오히려 낫다.
+       
+       
        Enumeration files =multi.getFileNames(); 
+       
+       String file2 =(String)files.nextElement(); 
+       filename2=multi.getFilesystemName(file2); 
+       origfilename2 = multi.getOriginalFileName(file2); 
        
        String file1 =(String)files.nextElement(); 
        filename1=multi.getFilesystemName(file1); 
        origfilename1 = multi.getOriginalFileName(file1); 
        
-       String file2 =(String)files.nextElement(); 
-       filename2=multi.getFilesystemName(file2); 
-       origfilename2 = multi.getOriginalFileName(file2); 
+     
     
     }catch(Exception e){
     	 e.printStackTrace();
