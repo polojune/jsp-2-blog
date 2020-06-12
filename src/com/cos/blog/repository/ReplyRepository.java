@@ -29,12 +29,15 @@ public class ReplyRepository {
 	private ResultSet rs = null; 
 	
 	public int save(Reply reply) {
-		final String SQL ="";
+		final String SQL ="INSERT INTO reply (id,userId,boardId,content,createDate) VALUES (REPLY_SEQ.NEXTVAL, ?,?,?,SYSDATE)";
 	     try {
 	    		conn = DBConn.getConnection();
 	    		psmt = conn.prepareStatement(SQL);
 		       //물음표 완성하기
-	         
+	   
+	            psmt.setInt(1, reply.getUserId());
+	            psmt.setInt(2, reply.getBoardId());
+	            psmt.setString(3, reply.getContent());
 	    		return psmt.executeUpdate();
 	     } catch (Exception e) {
 			 e.printStackTrace();
