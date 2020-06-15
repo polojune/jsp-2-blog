@@ -18,30 +18,6 @@ function replyDelete(replyId) {
 	});
 
 }
-function renderReplyList(replyDtos){
-	for(var replyDto of replyDtos){
-		$("#reply__list").append(makeReplyItem(replyDto));
-	}
-}
-
-function makeReplyItem(replyDto){
-	var replyItem = `<li class="media">`;
-	if(replyDto.userProfile == null){
-		replyItem += `<img src="/blog/image/userProfile.png" class="img-circle">`;	
-	}else{
-		replyItem += `<img src="${replyDto.userProfile}" class="img-circle">`;
-	}
-
-	replyItem += `<div class="media-body">`;
-	replyItem += `<strong class="text-primary">${replyDto.username}</strong>`;
-	replyItem += `<p>${replyDto.reply.content}</p>`;
-	replyItem += `</div>`;
-	replyItem += `</li>`;
-	return replyItem;
-}
-
-
-
 
 
 
@@ -77,7 +53,7 @@ function replyWrite(boardId, userId) {
 			  alert("댓글 작성 성공");
 			  $("#reply__list").empty();
 			  console.log(result); 
-			  renderReplyList(result);
+			  renderReplyList(result,userId);
 			  $("#reply__write__form").val("");
 		}
 		// 2. ajax 재호출 findAll()
@@ -88,14 +64,16 @@ function replyWrite(boardId, userId) {
 	});
 
 }
-function renderReplyList(replyDtos){
+function renderReplyList(replyDtos,userId){
 	for(var replyDto of replyDtos){
-		$("#reply__list").append(makeReplyItem(replyDto));
+		$("#reply__list").append(makeReplyItem(replyDto,userId));
 	}
 }
 
-function makeReplyItem(replyDto){
-	var replyItem = `<li class="media">`;
+function makeReplyItem(replyDto,userId){
+	// reply-id 추가 시작
+	var replyItem = `<li id="reply-${replyDto.reply.id}"  class="media">`;
+	// reply-id 추가 끝
 	if(replyDto.userProfile == null){
 		replyItem += `<img src="/blog/image/userProfile.png" class="img-circle">`;	
 	}else{
@@ -106,6 +84,13 @@ function makeReplyItem(replyDto){
 	replyItem += `<strong class="text-primary">${replyDto.username}</strong>`;
 	replyItem += `<p>${replyDto.reply.content}</p>`;
 	replyItem += `</div>`;
+	//휴지통 추가 시작 
+	replyItem += `<div class="m-2">`;
+    if(replyDto.reply.userId == userId){
+	replyItem += `<i onclick="replyDelete(${replyDto.reply.id})" style="font-soze:30px; cursor:pointer" class="material-icons">delete</i>`;
+    } 
+	replyItem += `</div>`;
+	//휴지통 추가 끝
 	replyItem += `</li>`;
 	return replyItem;
 }

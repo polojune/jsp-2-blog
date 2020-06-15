@@ -60,11 +60,11 @@
 								<img onerror="this.src='/blog/images/userProfile.png'" src="${replyDto.userProfile}" alt="" class="img-circle">
 									<div class="media-body">
 										<strong class="text-primary">${replyDto.username}</strong>
-										<p>${replyDto.reply.content}</p>
+										    <p>${replyDto.reply.content}</p>
 									</div>
 									<div class="m-2">
 									      <c:if test="${replyDto.reply.userId eq sessionScope.principal.id}">
-									      <i onclick="replyDelete(${replyDto.reply.id})" style="font-size:40px; cursor:pointer;" class="material-icons">delete</i>
+									          <i onclick="replyDelete(${replyDto.reply.id})" style="font-soze:30px; cursor:pointer" class="material-icons">delete</i>
 									      </c:if>
 									</div>
 									
@@ -85,8 +85,8 @@
 
 </div>
 
-
-<script src="/blog/js/reply.js"></script>
 <script src="/blog/js/detail.js"></script>
+<script src="/blog/js/reply.js"></script>
+
 
 <%@ include file="../include/footer.jsp"%>
