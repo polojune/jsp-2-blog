@@ -25,7 +25,7 @@ public class ReplyWriteProcAction implements Action {
 		while ((input = br.readLine()) != null) {
 			sb.append(input);
 		}
-		System.out.println(sb.toString());
+		System.out.println("input:"+sb.toString());
 		Gson gson = new Gson();
 		Reply reply = gson.fromJson(sb.toString(), Reply.class);
 
@@ -36,6 +36,7 @@ public class ReplyWriteProcAction implements Action {
 		if (result == 1) {
 			   List<ReplyResponseDto> replyDtos = replyRepository.findAll(reply.getBoardId());
 			   String replyDtosJson = gson.toJson(replyDtos); 
+			   System.out.println("ReplyWriteProcAction : replyDtosJson : " + replyDtosJson);
 			   Script.outJson(replyDtosJson, response);
 
 		}else {

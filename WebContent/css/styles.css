@@ -14,4 +14,9 @@
 .comment-wrapper .media-list .media {
 	border-bottom: 1px dashed #efefef;
 	margin-bottom: 25px;
+	
+}
+.i_btn{
+	font.size:40px; 
+	cursor:pointer;
 }

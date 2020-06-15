@@ -56,12 +56,20 @@
 
 							<c:forEach var="replyDto" items="${detailDto.replyDtos}">
 								<!-- 댓글 아이템 -->
-								<li class="media">
+								<li id="reply-${replyDto.reply.id}" class="media">
 								<img onerror="this.src='/blog/images/userProfile.png'" src="${replyDto.userProfile}" alt="" class="img-circle">
 									<div class="media-body">
 										<strong class="text-primary">${replyDto.username}</strong>
 										<p>${replyDto.reply.content}</p>
-									</div></li>
+									</div>
+									<div class="m-2">
+									      <c:if test="${replyDto.reply.userId eq sessionScope.principal.id}">
+									      <i onclick="replyDelete(${replyDto.reply.id})" style="font-size:40px; cursor:pointer;" class="material-icons">delete</i>
+									      </c:if>
+									</div>
+									
+							</li>
+									
 							</c:forEach>
 
 						</ul>

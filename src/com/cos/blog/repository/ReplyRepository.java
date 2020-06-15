@@ -68,12 +68,12 @@ public class ReplyRepository {
 	}
   
 	public int deleteById(int id) {
-		final String SQL ="";
+		final String SQL ="DELETE FROM reply WHERE id = ?";
 	     try {
 	    		conn = DBConn.getConnection();
 	    		psmt = conn.prepareStatement(SQL);
 		       //물음표 완성하기
-	         
+	            psmt.setInt(1, id);
 	    		return psmt.executeUpdate();
 	     } catch (Exception e) {
 			 e.printStackTrace();
