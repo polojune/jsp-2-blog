@@ -174,7 +174,7 @@ public class UsersRepository {
 		return -1;
 	}
 
-	public List<Users> finaAll() {
+	public List<Users> findAll() {
 		final String SQL = "";
 		List<Users> users = new ArrayList<>();
 
